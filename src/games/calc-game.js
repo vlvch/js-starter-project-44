@@ -13,7 +13,7 @@ const calcGame = () => {
 
   const question = () => {
     for (let i = 0; i < 3; i += 1) {
-      const randomExp = randomNumber(0) + randomOperator() + randomNumber(1)
+      const randomExp = randomNumber(0) + " " + randomOperator() + " " + randomNumber(1)
 
       const randomExpFunct = new Function(`return ${randomExp}`)
 
