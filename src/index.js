@@ -70,7 +70,7 @@ const progressionMake = (firstNum, secondNum, numArray, hiddenNum) => {
 
   numArray[randomPlace] = '..'
 
-  console.log(`Question: ${numArray}`)
+  console.log(`Question: ${numArray.join(' ')}`)
 
   return hiddenNum
 }
