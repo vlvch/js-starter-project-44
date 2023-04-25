@@ -76,13 +76,13 @@ const progressionMake = (firstNum, secondNum, numArray, hiddenNum) => {
 };
 
 const primeFinding = (number, array) => {
-  const primeNumbers = [1, 2, 3, 5, 7, 11];
+  const primeNumbers = [2, 3, 5, 7, 11];
   const comparsion = (element) => number === element;
   const even = (element) => number % element === 0;
 
   if (primeNumbers.some(comparsion) === true) {
     array.push('yes');
-  } else if (primeNumbers.slice(1, 5).some(even) === true) {
+  } else if (primeNumbers.some(even) === true || number <= 1) {
     array.push('no');
   } else {
     array.push('yes');
