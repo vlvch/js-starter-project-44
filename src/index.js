@@ -97,11 +97,20 @@ const evenFinding = (number, array) => {
   };
 };
 
-const stringToNumber = (string) => {
-  return string;
-}
+const stringToNumber = (array) => {
+  let exp = 0;
+  
+  if (array[1] === '-') {
+    return exp = array[0] - array[2];
+  } else if (array[1] === '+') {
+    return exp = array[0] + array[2];
+  } else if (array[1] === '*') {
+    return exp = array[0] * array[2];
+  }
+};
+
 export {
   randomHundered, progressionMake, gcdFinding,
   userWelcome, answerCounter, randomNumber,
   randomOperator, primeFinding, evenFinding, stringToNumber,
-}
+};
