@@ -23,8 +23,8 @@ const evenGame = () => {
       evenFinding(number, correctAnswer);
 
       answerCounter(userAnswer, correctAnswer[0], i, userName);
-    }
+    };
     question();
-  };
+  }
 };
 export default evenGame;

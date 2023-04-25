@@ -15,7 +15,7 @@ const calcGame = () => {
     for (let i = 0; i < 3; i += 1) {
       const randomExp = [randomNumber(0), randomOperator(), randomNumber(1)];
 
-      const correctAnswer = stringToNumber(randomExp) ;
+      const correctAnswer = stringToNumber(randomExp);
 
       console.log(`Question: ${randomExp.join(' ')}`);
 

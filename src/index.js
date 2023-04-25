@@ -18,7 +18,7 @@ const answerCounter = (userAnswer, correctAnswer, i, userName) => {
     console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
     console.log(`Let's try again, ${userName}!`);
     process.exit();
-  };
+  }
 };
 
 const randomNumber = () => Math.floor((Math.random() * 10) + 1);
@@ -47,7 +47,7 @@ const gcdFinding = (firstNum, secondNum) => {
     } else {
       n += 1;
     }
-  };
+  }
   return divisorArray.pop();
 };
 
@@ -64,7 +64,7 @@ const progressionMake = (firstNum, secondNum, numArray, hiddenNum) => {
     numArray.push(newNumber + secondNum);
 
     i += 1;
-  };
+  }
 
   hiddenNum.push(numArray[randomPlace]);
 
@@ -86,7 +86,7 @@ const primeFinding = (number, array) => {
     array.push('no');
   } else {
     array.push('yes');
-  };
+  }
 };
 
 const evenFinding = (number, array) => {
@@ -94,18 +94,16 @@ const evenFinding = (number, array) => {
     array.push('yes');
   } else {
     array.push('no');
-  };
+  }
 };
 
 const stringToNumber = (array) => {
-  let exp = 0;
-  
   if (array[1] === '-') {
-    return exp = array[0] - array[2];
+    return array[0] - array[2];
   } else if (array[1] === '+') {
-    return exp = array[0] + array[2];
+    return array[0] + array[2];
   } else if (array[1] === '*') {
-    return exp = array[0] * array[2];
+    return array[0] * array[2];
   }
 };
 
