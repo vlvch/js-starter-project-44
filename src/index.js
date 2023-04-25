@@ -52,23 +52,35 @@ const gcdFinding = (firstNum, secondNum) => {
 };
 
 const progressionMake = (firstNum, secondNum, numArray, hiddenNum) => {
-  let i = 1;
+  let i = 0;
 
   const randomPlace = randomNumber(0);
+  const dots = ['..'];
+  const bufferArr = [];
 
-  numArray.push(firstNum);
+  bufferArr.push(firstNum);
 
-  while (i <= 10) {
-    const newNumber = +numArray[numArray.length - 1];
+  while (i < 10) {
+    const newNumber = +bufferArr[bufferArr.length - 1];
 
-    numArray.push(newNumber + secondNum);
+    bufferArr.push(newNumber + secondNum);
 
     i += 1;
   }
 
-  hiddenNum.push(numArray[randomPlace]);
+  hiddenNum.push(bufferArr[randomPlace]);
 
-  numArray[randomPlace] = '..';
+  let x = 0;
+
+  while (x < 10) {
+    if (x < randomPlace || x > randomPlace) {
+      numArray.push(bufferArr[x]);
+      x += 1;
+    } else {
+      numArray.push(dots[0]);
+      x += 1;
+    }
+  }
 
   console.log(`Question: ${numArray.join(' ')}`);
 
@@ -98,13 +110,16 @@ const evenFinding = (number, array) => {
 };
 
 const stringToNumber = (array) => {
+  let i = 0;
+
   if (array[1] === '-') {
-    return array[0] - array[2];
+    i = array[0] - array[2];
   } else if (array[1] === '+') {
-    return array[0] + array[2];
-  } else if (array[1] === '*') {
-    return array[0] * array[2];
+    i = array[0] + array[2];
+  } else {
+    i = array[0] * array[2];
   }
+  return i;
 };
 
 export {
