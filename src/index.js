@@ -72,7 +72,7 @@ const progressionMake = (firstNum, secondNum, numArray, hiddenNum) => {
 
   let x = 0;
 
-  while (x < 10) {
+  while (x <= 10) {
     if (x < randomPlace || x > randomPlace) {
       numArray.push(bufferArr[x]);
       x += 1;

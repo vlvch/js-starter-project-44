@@ -19,12 +19,12 @@ make brain-prime
 
 make brain-progression
 ```
-https://asciinema.org/a/fxflNZi8D3EthVfjJbrjOGYx3; brain-even game demo;
+https://asciinema.org/a/cVTnn4GSOWPSiZ5oC8QQN15lk; brain-even game demo;
 
-https://asciinema.org/a/hzrSJ8aw17E5XznphDSn087db; brain-calc game demo;
+https://asciinema.org/a/Lyrd5makIR92GW0x7c3grVNqM; brain-calc game demo;
 
 https://asciinema.org/a/paKhSL5rZA00KHMfReN9ofUqf; brain-gcd game demo;
 
- https://asciinema.org/a/TRnPFalFIeLMy5UjaUjfFeLG5; brain-progression game demo;
+https://asciinema.org/a/1mltOCXkQKSK6Z7MFFmCOId7o; brain-progression game demo;
 
- https://asciinema.org/a/9RIRqU98ujkmQKzoTUh4ih5C2; brain-prime game demo;
+https://asciinema.org/a/X68EtEjrqO5JrVOeN0HMweVTy; brain-prime game demo;
