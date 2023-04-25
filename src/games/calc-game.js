@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
 import {
-  userWelcome, answerCounter, randomNumber, randomOperator
+  userWelcome, answerCounter, randomNumber, randomOperator, stringToNumber,
 } from '../index.js';
 
 const calcGame = () => {
@@ -13,18 +13,16 @@ const calcGame = () => {
 
   const question = () => {
     for (let i = 0; i < 3; i += 1) {
-      const randomExp = randomNumber(0) + ' ' + randomOperator() + ' ' + randomNumber(1);
+      const randomExp = `${randomNumber(0)} ${randomOperator()} ${randomNumber(1)}`;
 
-      const randomExpFunct = new Function(`return ${randomExp}`);
-
-      const correctAnswer = randomExpFunct();
+      const correctAnswer = stringToNumber(randomExp) ;
 
       console.log(`Question: ${randomExp}`);
 
       const userAnswer = readlineSync.question('You answer: ');
 
       answerCounter(Number(userAnswer), correctAnswer, i, userName[0]);
-    };
+    }
   };
   question();
 };

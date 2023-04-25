@@ -97,8 +97,11 @@ const evenFinding = (number, array) => {
   };
 };
 
+const stringToNumber = (string) => {
+  return string;
+}
 export {
   randomHundered, progressionMake, gcdFinding,
   userWelcome, answerCounter, randomNumber,
-  randomOperator, primeFinding, evenFinding,
+  randomOperator, primeFinding, evenFinding, stringToNumber,
 }

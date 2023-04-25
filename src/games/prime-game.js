@@ -1,31 +1,31 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync'
+import readlineSync from 'readline-sync';
 import {
-  randomHundered, userWelcome, answerCounter, primeFinding
-} from '../index.js'
+  randomHundered, userWelcome, answerCounter, primeFinding,
+} from '../index.js';
 
 const primeGame = () => {
-  const userName = []
+  const userName = [];
 
-  userWelcome(userName)
+  userWelcome(userName);
 
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".')
+  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
 
   const question = () => {
     for (let i = 0; i < 3; i += 1) {
-      const correctAnswer = []
+      const correctAnswer = [];
 
-      const number = randomHundered()
+      const number = randomHundered();
 
-      console.log(`Question: ${number}`)
+      console.log(`Question: ${number}`);
 
-      primeFinding(number, correctAnswer)
+      primeFinding(number, correctAnswer);
 
-      const userAnswer = readlineSync.question('You answer: ')
+      const userAnswer = readlineSync.question('You answer: ');
 
-      answerCounter(userAnswer, correctAnswer[0], i, userName)
+      answerCounter(userAnswer, correctAnswer[0], i, userName);
     }
-  }
-  question()
-}
-export default primeGame
+  };
+  question();
+};
+export default primeGame;
