@@ -1,129 +1,74 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
+import calcGame from './games/calc-game.js';
+import evenGame from './games/even-game.js';
+import primeGame from './games/prime-game.js';
+import gcdGame from './games/gcd-game.js';
+import progressionGame from './games/progression-game.js';
 
-const userWelcome = (userName) => {
-  const name = readlineSync.question('May I have your name? ');
+const gameStart = (gameName) => {
+  const userWelcome = (userName) => {
+    const name = readlineSync.question('May I have your name? ');
 
-  console.log(`Hello, ${name}`);
+    console.log(`Hello, ${name}`);
 
-  userName.push(name);
-};
+    userName.push(name);
+  };
 
-const answerCounter = (userAnswer, correctAnswer, i, userName) => {
-  if (userAnswer === correctAnswer && i === 2) {
-    console.log(`Congratulations, ${userName}!`);
-  } else if (userAnswer === correctAnswer) {
-    console.log('Correct!');
-  } else {
-    console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
-    console.log(`Let's try again, ${userName}!`);
-    process.exit();
-  }
-};
+  const answerCounter = (userAnswer, correctAnswer, i, userName) => {
+    const stringUserAnswer = String(userAnswer);
+    const stringCorrectAnswer = String(correctAnswer);
 
-const randomNumber = () => Math.floor((Math.random() * 10) + 1);
-
-const randomHundered = () => Math.floor((Math.random() * 100) + 1);
-
-const randomOperator = () => {
-  const operatorsArray = ['+', '-', '*'];
-
-  const result = Math.floor(Math.random() * 3);
-
-  const randomResult = operatorsArray[result];
-
-  return randomResult;
-};
-
-const gcdFinding = (firstNum, secondNum) => {
-  const divisorArray = [];
-  let n = 0;
-
-  while (n <= firstNum) {
-    if (firstNum % n === 0 && secondNum % n === 0) {
-      divisorArray.push(n);
-
-      n += 1;
+    if (stringUserAnswer === stringCorrectAnswer && i === 2) {
+      console.log(`Congratulations, ${userName}!`);
+    } else if (stringUserAnswer === stringCorrectAnswer) {
+      console.log('Correct!');
     } else {
-      n += 1;
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
+      console.log(`Let's try again, ${userName}!`);
+      process.exit();
     }
+  };
+
+  const userName = [];
+  const question = [];
+  const answer = [];
+
+  userWelcome(userName);
+
+  if (gameName === 'calcGame') {
+    console.log('What is the result of the expression?');
+  } else if (gameName === 'evenGame') {
+    console.log('Answer "yes" if the number is even, otherwise answer "no".');
+  } else if (gameName === 'gcdGame') {
+    console.log('Find the greatest common divisor of given numbers.');
+  } else if (gameName === 'primeGame') {
+    console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+  } else {
+    console.log('What number is missing in the progression?');
   }
-  return divisorArray.pop();
-};
 
-const progressionMake = (firstNum, secondNum, numArray, hiddenNum) => {
-  let i = 0;
-
-  const randomPlace = randomNumber(0);
-  const dots = ['..'];
-  const bufferArr = [];
-
-  bufferArr.push(firstNum);
-
-  while (i < 10) {
-    const newNumber = +bufferArr[bufferArr.length - 1];
-
-    bufferArr.push(newNumber + secondNum);
-
-    i += 1;
-  }
-
-  hiddenNum.push(bufferArr[randomPlace]);
-
-  let x = 0;
-
-  while (x <= 10) {
-    if (x < randomPlace || x > randomPlace) {
-      numArray.push(bufferArr[x]);
-      x += 1;
+  for (let i = 0; i < 3; i += 1) {
+    if (gameName === 'calcGame') {
+      calcGame(question, answer);
+    } else if (gameName === 'evenGame') {
+      evenGame(question, answer);
+    } else if (gameName === 'gcdGame') {
+      gcdGame(question, answer);
+    } else if (gameName === 'primeGame') {
+      primeGame(question, answer);
     } else {
-      numArray.push(dots[0]);
-      x += 1;
+      progressionGame(question, answer);
     }
-  }
 
-  console.log(`Question: ${numArray.join(' ')}`);
+    console.log(`Question: ${question.join(' ')}`);
 
-  return hiddenNum;
-};
+    const userAnswer = readlineSync.question('You answer: ');
 
-const primeFinding = (number, array) => {
-  const primeNumbers = [2, 3, 5, 7, 11];
-  const comparsion = (element) => number === element;
-  const even = (element) => number % element === 0;
+    answerCounter(userAnswer, answer, i, userName);
 
-  if (primeNumbers.some(comparsion) === true) {
-    array.push('yes');
-  } else if (primeNumbers.some(even) === true || number <= 1) {
-    array.push('no');
-  } else {
-    array.push('yes');
+    question.length = 0;
+    answer.length = 0;
   }
 };
-
-const evenFinding = (number, array) => {
-  if (number % 2 === 0) {
-    array.push('yes');
-  } else {
-    array.push('no');
-  }
-};
-
-const stringToNumber = (array) => {
-  let i = 0;
-
-  if (array[1] === '-') {
-    i = array[0] - array[2];
-  } else if (array[1] === '+') {
-    i = array[0] + array[2];
-  } else {
-    i = array[0] * array[2];
-  }
-  return i;
-};
-
-export {
-  randomHundered, progressionMake, gcdFinding,
-  userWelcome, answerCounter, randomNumber,
-  randomOperator, primeFinding, evenFinding, stringToNumber,
-};
+export default gameStart;

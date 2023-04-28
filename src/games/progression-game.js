@@ -1,33 +1,36 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync';
-import {
-  answerCounter, progressionMake, randomNumber, userWelcome,
-} from '../index.js';
+import randomNumber from '../utils.js';
 
-const progressionGame = () => {
-  const numArray = [];
-  const hiddenNum = [];
-  const userName = [];
+const progressionGame = (question, answer) => {
+  const firstNum = randomNumber(1, 10);
+  const secondNum = randomNumber(1, 10);
+  const randomPlace = randomNumber(1, 10);
+  const bufferArr = [];
 
-  userWelcome(userName);
+  bufferArr.push(firstNum);
 
-  console.log('What number is missing in the progression?');
+  let i = 0;
 
-  const question = () => {
-    for (let i = 0; i < 3; i += 1) {
-      const firstNum = randomNumber();
-      const secondNum = randomNumber();
+  while (i < 10) {
+    const newNumber = +bufferArr[bufferArr.length - 1];
 
-      progressionMake(firstNum, secondNum, numArray, hiddenNum);
+    bufferArr.push(newNumber + secondNum);
 
-      const userAnswer = readlineSync.question('You answer: ');
+    i += 1;
+  }
 
-      answerCounter(Number(userAnswer), hiddenNum.pop(), i, userName);
+  answer.push(bufferArr[randomPlace]);
 
-      numArray.length = 0;
-      hiddenNum.length = 0;
+  let x = 0;
+
+  while (x <= 10) {
+    if (x < randomPlace || x > randomPlace) {
+      question.push(bufferArr[x]);
+      x += 1;
+    } else {
+      question.push('..');
+      x += 1;
     }
-  };
-  question();
+  }
 };
 export default progressionGame;

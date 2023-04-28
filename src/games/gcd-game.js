@@ -1,30 +1,24 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync';
-import {
-  randomNumber, userWelcome, gcdFinding, answerCounter,
-} from '../index.js';
+import randomNumber from '../utils.js';
 
-const gcdGame = () => {
-  const userName = [];
+const gcdGame = (question, answer) => {
+  const firstNum = randomNumber(1, 20);
+  const secondNum = randomNumber(1, 20);
 
-  userWelcome(userName);
+  const divisorArray = [];
 
-  console.log('Find the greatest common divisor of given numbers.');
+  let n = 0;
 
-  const question = () => {
-    for (let i = 0; i < 3; i += 1) {
-      const firstNum = randomNumber(0);
-      const secondNum = randomNumber(1);
+  while (n <= firstNum) {
+    if (firstNum % n === 0 && secondNum % n === 0) {
+      divisorArray.push(n);
 
-      console.log(`Question: ${firstNum} ${secondNum}`);
-
-      const userAnswer = readlineSync.question('You answer: ');
-
-      const correctAnswer = gcdFinding(firstNum, secondNum);
-
-      answerCounter(Number(userAnswer), correctAnswer, i, userName);
+      n += 1;
+    } else {
+      n += 1;
     }
-  };
-  question();
+  }
+  question.push(firstNum, secondNum);
+  answer.push(divisorArray.pop());
 };
 export default gcdGame;
