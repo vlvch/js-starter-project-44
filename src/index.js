@@ -1,52 +1,19 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
+import answerCounter from './counter.js';
 import calcGame from './games/calc-game.js';
 import evenGame from './games/even-game.js';
 import primeGame from './games/prime-game.js';
 import gcdGame from './games/gcd-game.js';
 import progressionGame from './games/progression-game.js';
+import greeting from './greeting.js';
 
 const gameStart = (gameName) => {
-  const userWelcome = (userName) => {
-    const name = readlineSync.question('May I have your name? ');
-
-    console.log(`Hello, ${name}`);
-
-    userName.push(name);
-  };
-
-  const answerCounter = (userAnswer, correctAnswer, i, userName) => {
-    const stringUserAnswer = String(userAnswer);
-    const stringCorrectAnswer = String(correctAnswer);
-
-    if (stringUserAnswer === stringCorrectAnswer && i === 2) {
-      console.log(`Congratulations, ${userName}!`);
-    } else if (stringUserAnswer === stringCorrectAnswer) {
-      console.log('Correct!');
-    } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
-      console.log(`Let's try again, ${userName}!`);
-      process.exit();
-    }
-  };
-
-  const userName = [];
   const question = [];
   const answer = [];
+  const userName = [];
 
-  userWelcome(userName);
-
-  if (gameName === 'calcGame') {
-    console.log('What is the result of the expression?');
-  } else if (gameName === 'evenGame') {
-    console.log('Answer "yes" if the number is even, otherwise answer "no".');
-  } else if (gameName === 'gcdGame') {
-    console.log('Find the greatest common divisor of given numbers.');
-  } else if (gameName === 'primeGame') {
-    console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
-  } else {
-    console.log('What number is missing in the progression?');
-  }
+  greeting(gameName, userName);
 
   for (let i = 0; i < 3; i += 1) {
     if (gameName === 'calcGame') {
