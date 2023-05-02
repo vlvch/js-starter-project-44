@@ -15,13 +15,9 @@ const isPrime = (number) => {
 const primeGame = () => {
   const number = randomNumber(1, 100);
 
-  let answer = '';
-
   if (isPrime(number) === true) {
-    answer = 'yes';
-  } else {
-    answer = 'no';
+    return [number, 'yes'];
   }
-  return [number, answer];
+  return [number, 'no'];
 };
 export default primeGame;
