@@ -14,6 +14,7 @@ const isPrime = (number) => {
 
 const primeGame = () => {
   const number = randomNumber(1, 100);
+
   const rightAnswer = [number];
 
   if (isPrime(number) === true) {

@@ -11,9 +11,9 @@ const isEven = (number) => {
 };
 
 const evenGame = () => {
-  const number = randomNumber(1, 100);
+  const number = randomNumber(1, 50);
 
-  const rightAnswer = [number];
+  const rightAnswer = [];
 
   if (isEven(number) === true) {
     rightAnswer.push('yes');
