@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import randomNumber from '../utils.js';
+import trueOrFalse from '../truefalse.js';
 
 const isEven = (number) => {
   let result = false;
@@ -13,9 +14,8 @@ const isEven = (number) => {
 const evenGame = () => {
   const number = randomNumber(1, 50);
 
-  if (isEven(number) === true) {
-    return [number, 'yes'];
-  }
-  return [number, 'no'];
+  const answer = trueOrFalse(isEven(number));
+
+  return [number, answer];
 };
 export default evenGame;

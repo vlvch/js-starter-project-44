@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import randomNumber from '../utils.js';
+import trueOrFalse from '../truefalse.js';
 
 const isPrime = (number) => {
   let result = true;
@@ -15,9 +16,8 @@ const isPrime = (number) => {
 const primeGame = () => {
   const number = randomNumber(1, 100);
 
-  if (isPrime(number) === true) {
-    return [number, 'yes'];
-  }
-  return [number, 'no'];
+  const answer = trueOrFalse(isPrime(number));
+
+  return [number, answer];
 };
 export default primeGame;
