@@ -1,24 +1,30 @@
 #!/usr/bin/env node
 import randomNumber from '../utils.js';
 
-const gcdGame = (question, answer) => {
-  const firstNum = randomNumber(1, 20);
-  const secondNum = randomNumber(1, 20);
-
-  const divisorArray = [];
+const getGcd = (firstNum, secondNum) => {
+  const question = [firstNum, secondNum];
+  const answer = [];
 
   let n = 0;
 
   while (n <= firstNum) {
     if (firstNum % n === 0 && secondNum % n === 0) {
-      divisorArray.push(n);
+      answer.push(n);
 
       n += 1;
     } else {
       n += 1;
     }
   }
-  question.push(firstNum, secondNum);
-  answer.push(divisorArray.pop());
+  return [question.join(' '), answer.pop()];
+};
+
+const gcdGame = () => {
+  const firstNum = randomNumber(1, 50);
+  const secondNum = randomNumber(1, 50);
+
+  const rightAnswer = getGcd(firstNum, secondNum);
+
+  return rightAnswer;
 };
 export default gcdGame;

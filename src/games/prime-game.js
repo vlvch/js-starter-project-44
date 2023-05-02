@@ -1,19 +1,26 @@
 #!/usr/bin/env node
 import randomNumber from '../utils.js';
 
-const primeGame = (question, answer) => {
-  const number = randomNumber(1, 100);
-  const primeNumbers = [2, 3, 5, 7, 11];
-  const comparsion = (element) => number === element;
-  const even = (element) => number % element === 0;
+const isPrime = (number) => {
+  let result = true;
 
-  if (primeNumbers.some(comparsion) === true) {
-    answer.push('yes');
-  } else if (primeNumbers.some(even) === true || number <= 1) {
-    answer.push('no');
-  } else {
-    answer.push('yes');
+  for (let i = 2; i < number; i += 1) {
+    if (number % i === 0) {
+      result = false;
+    }
   }
-  question.push(number);
+  return result;
+};
+
+const primeGame = () => {
+  const number = randomNumber(1, 100);
+  const rightAnswer = [number];
+
+  if (isPrime(number) === true) {
+    rightAnswer.push('yes');
+  } else {
+    rightAnswer.push('no');
+  }
+  return rightAnswer;
 };
 export default primeGame;

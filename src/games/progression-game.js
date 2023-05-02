@@ -1,36 +1,38 @@
 #!/usr/bin/env node
 import randomNumber from '../utils.js';
 
-const progressionGame = (question, answer) => {
-  const firstNum = randomNumber(1, 10);
-  const secondNum = randomNumber(1, 10);
-  const randomPlace = randomNumber(1, 10);
-  const bufferArr = [];
-
-  bufferArr.push(firstNum);
-
+const getProgression = (firstNum, stepNum, sizeNum) => {
+  const progresion = [firstNum];
   let i = 0;
 
-  while (i < 10) {
-    const newNumber = +bufferArr[bufferArr.length - 1];
+  while (i < sizeNum) {
+    const newNumber = +progresion[progresion.length - 1];
 
-    bufferArr.push(newNumber + secondNum);
+    progresion.push(newNumber + stepNum);
 
     i += 1;
   }
+  return progresion;
+};
 
-  answer.push(bufferArr[randomPlace]);
+const progressionGame = () => {
+  const firstNum = randomNumber(1, 10);
+  const stepNum = randomNumber(1, 10);
+  const sizeNum = randomNumber(8, 12);
+  const randomPlace = randomNumber(1, sizeNum);
 
-  let x = 0;
+  const progression = getProgression(firstNum, stepNum, sizeNum);
 
-  while (x <= 10) {
-    if (x < randomPlace || x > randomPlace) {
-      question.push(bufferArr[x]);
-      x += 1;
+  const answer = [progression[randomPlace]];
+  const question = [];
+
+  for (let i = 0; i <= sizeNum; i += 1) {
+    if (i < randomPlace || i > randomPlace) {
+      question.push(progression[i]);
     } else {
       question.push('..');
-      x += 1;
     }
   }
+  return [question.join(' '), answer];
 };
 export default progressionGame;

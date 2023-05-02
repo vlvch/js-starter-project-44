@@ -1,41 +1,33 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
-import answerCounter from './counter.js';
-import calcGame from './games/calc-game.js';
-import evenGame from './games/even-game.js';
-import primeGame from './games/prime-game.js';
-import gcdGame from './games/gcd-game.js';
-import progressionGame from './games/progression-game.js';
 import greeting from './greeting.js';
 
-const gameStart = (gameName) => {
-  const question = [];
-  const answer = [];
-  const userName = [];
+const gameStart = (description, runGame) => {
+  const userName = greeting();
 
-  greeting(gameName, userName);
+  console.log(description);
 
-  for (let i = 0; i < 3; i += 1) {
-    if (gameName === 'calcGame') {
-      calcGame(question, answer);
-    } else if (gameName === 'evenGame') {
-      evenGame(question, answer);
-    } else if (gameName === 'gcdGame') {
-      gcdGame(question, answer);
-    } else if (gameName === 'primeGame') {
-      primeGame(question, answer);
-    } else {
-      progressionGame(question, answer);
+  let rounds = 0;
+
+  for (;;) {
+    if (rounds === 3) {
+      console.log(`Congratulations, ${userName}!`);
+      break;
     }
+    const rightAnswer = runGame();
 
-    console.log(`Question: ${question.join(' ')}`);
+    console.log(`Question: ${rightAnswer[0]}`);
 
     const userAnswer = readlineSync.question('You answer: ');
 
-    answerCounter(userAnswer, answer, i, userName);
-
-    question.length = 0;
-    answer.length = 0;
+    if (userAnswer === String(rightAnswer[1])) {
+      console.log('Correct!');
+      rounds += 1;
+    } else {
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer[1]}'`);
+      console.log(`Let's try again, ${userName}!`);
+      break;
+    }
   }
 };
 export default gameStart;
