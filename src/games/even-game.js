@@ -11,15 +11,15 @@ const isEven = (number) => {
 };
 
 const evenGame = () => {
-  const number = randomNumber(1, 50);
+  const question = randomNumber(1, 50);
 
   let answer = '';
 
-  if (isEven(number) === true) {
+  if (isEven(question) === true) {
     answer = 'yes';
   } else {
     answer = 'no';
   }
-  return [number, answer];
+  return [question, answer];
 };
 export default evenGame;
