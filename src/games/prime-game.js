@@ -15,13 +15,13 @@ const isPrime = (number) => {
 const primeGame = () => {
   const number = randomNumber(1, 100);
 
-  const rightAnswer = [number];
+  let answer = '';
 
   if (isPrime(number) === true) {
-    rightAnswer.push('yes');
+    answer = 'yes';
   } else {
-    rightAnswer.push('no');
+    answer = 'no';
   }
-  return rightAnswer;
+  return [number, answer];
 };
 export default primeGame;

@@ -13,13 +13,13 @@ const isEven = (number) => {
 const evenGame = () => {
   const number = randomNumber(1, 50);
 
-  const rightAnswer = [number];
+  let answer = '';
 
   if (isEven(number) === true) {
-    rightAnswer.push('yes');
+    answer = 'yes';
   } else {
-    rightAnswer.push('no');
+    answer = 'no';
   }
-  return rightAnswer;
+  return [number, answer];
 };
 export default evenGame;
