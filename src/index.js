@@ -1,33 +1,28 @@
-#!/usr/bin/env node
 import readlineSync from 'readline-sync';
-import greeting from './greeting.js';
+import { greeting } from './utils.js';
 
 const gameStart = (description, runGame) => {
   const userName = greeting();
 
   console.log(description);
 
-  let rounds = 0;
+  const rounds = 3;
 
-  for (;;) {
-    if (rounds === 3) {
-      console.log(`Congratulations, ${userName}!`);
-      break;
-    }
-    const rightAnswer = runGame();
+  for (let i = 0; i < rounds; i += 1) {
+    const [question, answer] = runGame();
 
-    console.log(`Question: ${rightAnswer[0]}`);
+    console.log(`Question: ${question}`);
 
     const userAnswer = readlineSync.question('You answer: ');
 
-    if (userAnswer === String(rightAnswer[1])) {
+    if (userAnswer === String(answer)) {
       console.log('Correct!');
-      rounds += 1;
     } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${rightAnswer[1]}'`);
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${answer}'`);
       console.log(`Let's try again, ${userName}!`);
-      break;
+      return;
     }
   }
+  console.log(`Congratulations, ${userName}!`);
 };
 export default gameStart;

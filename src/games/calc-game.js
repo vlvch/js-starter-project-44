@@ -1,8 +1,6 @@
-#!/usr/bin/env node
-import randomNumber from '../utils.js';
+import { randomNumber } from '../utils.js';
 
-const calc = (firstNum, secondNum, operator) => {
-  const question = [firstNum, operator, secondNum];
+const calc = (question) => {
   let answer = 0;
 
   if (question[1] === '-') {
@@ -12,21 +10,17 @@ const calc = (firstNum, secondNum, operator) => {
   } else {
     answer = question[0] * question[2];
   }
-  return [question.join(' '), answer];
+  return answer;
 };
 
 const calcGame = () => {
-  const randomOperator = () => {
-    const operators = ['+', '-', '*'];
-    const result = operators[randomNumber(1, 3)];
-
-    return result;
-  };
+  const operators = ['+', '-', '*'];
   const firstNum = randomNumber(1, 20);
   const secondNum = randomNumber(1, 20);
 
-  const rightAnswer = calc(firstNum, secondNum, randomOperator());
+  const question = [firstNum, operators[randomNumber(1, 3)], secondNum];
+  const answer = calc(question);
 
-  return rightAnswer;
+  return [question.join(' '), answer];
 };
 export default calcGame;
