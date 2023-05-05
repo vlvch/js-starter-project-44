@@ -1,19 +1,19 @@
 import { randomNumber } from '../utils.js';
 
-const getGcd = (question) => {
-  let answer = 0;
-  let n = 0;
+const getGcd = (firstNum, secondNum) => {
+  let gcd = 0;
+  let value = 0;
 
-  while (n <= question[0]) {
-    if (question[0] % n === 0 && question[1] % n === 0) {
-      answer = n;
+  while (value <= firstNum) {
+    if (firstNum % value === 0 && secondNum % value === 0) {
+      gcd = value;
 
-      n += 1;
+      value += 1;
     } else {
-      n += 1;
+      value += 1;
     }
   }
-  return answer;
+  return gcd;
 };
 
 const gcdGame = () => {
@@ -21,7 +21,7 @@ const gcdGame = () => {
   const secondNum = randomNumber(1, 50);
 
   const question = [firstNum, secondNum];
-  const answer = getGcd(question);
+  const answer = getGcd(firstNum, secondNum);
 
   return [question.join(' '), answer];
 };

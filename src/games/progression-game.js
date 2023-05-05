@@ -1,11 +1,11 @@
 import { randomNumber } from '../utils.js';
 
-const getProgression = (firstNum, stepNum, sizeNum) => {
-  const progression = [firstNum];
+const getProgression = (number, step, size) => {
+  const progression = [number];
   let i = 0;
 
-  while (i < sizeNum) {
-    progression.push(progression[progression.length - 1] + stepNum);
+  while (i < size) {
+    progression.push(progression[progression.length - 1] + step);
 
     i += 1;
   }
@@ -13,12 +13,12 @@ const getProgression = (firstNum, stepNum, sizeNum) => {
 };
 
 const progressionGame = () => {
-  const firstNum = randomNumber(1, 10);
-  const stepNum = randomNumber(1, 10);
-  const sizeNum = randomNumber(8, 12);
-  const index = randomNumber(1, sizeNum);
+  const number = randomNumber(1, 10);
+  const step = randomNumber(1, 10);
+  const size = randomNumber(8, 12);
+  const index = randomNumber(1, size);
 
-  const question = getProgression(firstNum, stepNum, sizeNum);
+  const question = getProgression(number, step, size);
 
   const answer = question[index];
 

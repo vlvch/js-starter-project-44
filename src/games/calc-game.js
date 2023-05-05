@@ -1,25 +1,24 @@
 import { randomNumber } from '../utils.js';
 
-const calc = (question) => {
-  let answer = 0;
-
-  if (question[1] === '-') {
-    answer = question[0] - question[2];
-  } else if (question[1] === '+') {
-    answer = question[0] + question[2];
-  } else {
-    answer = question[0] * question[2];
+const calc = (a, operator, b) => {
+  switch (operator) {
+    case '-':
+      return (a - b);
+    case '+':
+      return (a + b);
+    default:
+      return (a * b);
   }
-  return answer;
 };
 
 const calcGame = () => {
   const operators = ['+', '-', '*'];
   const firstNum = randomNumber(1, 20);
   const secondNum = randomNumber(1, 20);
+  const operator = operators[randomNumber(1, 3)];
 
-  const question = [firstNum, operators[randomNumber(1, 3)], secondNum];
-  const answer = calc(question);
+  const question = [firstNum, operator, secondNum];
+  const answer = calc(firstNum, operator, secondNum);
 
   return [question.join(' '), answer];
 };
