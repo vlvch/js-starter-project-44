@@ -6,8 +6,10 @@ const calc = (a, operator, b) => {
       return (a - b);
     case '+':
       return (a + b);
-    default:
+    case '*':
       return (a * b);
+    default:
+      throw new Error('Operator must be +/-/*');
   }
 };
 

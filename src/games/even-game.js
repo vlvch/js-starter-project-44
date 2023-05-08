@@ -1,13 +1,6 @@
 import { randomNumber } from '../utils.js';
 
-const isEven = (number) => {
-  let result = false;
-
-  if (number % 2 === 0) {
-    result = true;
-  }
-  return result;
-};
+const isEven = (a) => a % 2 === 0;
 
 const evenGame = () => {
   const number = randomNumber(1, 50);
